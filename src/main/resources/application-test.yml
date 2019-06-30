@@ -1,0 +1,79 @@
+
+server:
+  port: 8080
+  context-path: /realtysale
+com:
+  guojiu:
+    lsh:
+      pool:
+        keys: RC,RG
+        maxNo: 10001
+    redisCache:
+      prefix: realtysale_
+spring:
+  redis:
+    database: 5
+    host: 127.0.0.1
+    password:
+    port: 6379
+    timeout: 30000
+  http:
+    multipart:
+      max-file-size: 100MB
+      max-request-size: 100MB
+  application:
+    name: realtysale-service
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://192.168.10.239:13307/houses_test?useUnicode=true&characterEncoding=UTF-8&allowMultiQueries=true&useAffectedRows=true
+    username: root
+    password: "#20as3SElksds0ew98"
+  aop:
+    auto: true
+logging:
+  config: classpath:logback.xml
+  level: debug
+jur:
+  security:
+    #    init: false
+    projectUrl: /realtysale1
+    securitySwitch: false
+    fileUploadUrl: /var/www/html/other/trans
+    sftp:
+      host:
+      port:
+      userName:
+      password:
+    code:
+      email:
+        url: /sysUser/add/email,/sysUser/rePassword/email,/sysUser/validate/email
+      image:
+        fontName: "宋体"
+        url: /wechat/bind
+    scan:
+      needScan: false
+    oauth2:
+      tokenStore: redis
+      clients[0]:
+        clientId: jur
+        clientSecret: jursecret
+        autoRefreshToken: true
+      clients[1]:
+        clientId: app
+        clientSecret: appsecret
+        autoRefreshToken: true
+        accessTokenValidateSeconds: 1209600
+no:
+  pool:
+    keys[0]: RC
+guojiu:
+  file:
+    url: /disk1/temp/data
+    dir: /resources/realtysale
+    sftp:
+      host: 192.168.10.239
+      port: 20260
+      userName: root
+      password: 123456
+      timeout: 5000

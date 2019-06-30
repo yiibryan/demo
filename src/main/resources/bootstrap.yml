@@ -1,0 +1,11 @@
+spring:
+  jmx:
+    enabled: false
+  profiles:
+    active: local
+  http:
+    multipart:
+      maxFileSize: 5Mb
+      maxRequestSize: 5Mb
+  aop:
+    proxy-target-class: true
