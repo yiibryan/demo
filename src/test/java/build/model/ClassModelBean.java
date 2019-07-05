@@ -12,14 +12,15 @@ public class ClassModelBean extends Base {
 	private String className;//类名
 	private List<FieldModelBean> fields;//字段
 	private String superClassName;//父类
+	private String superClass;//父类
 	private String modelName;
 	private String modelPackage;
 	private String servicePackage;
 	private String daoPackage;
 	private List<MethodModelBean> methods;//方法列表
-
-
-
+	
+	
+	
 	public FieldModelBean getId() {
 		return id;
 	}
@@ -81,4 +82,11 @@ public class ClassModelBean extends Base {
 		this.fields = fields;
 	}
 
+	public String getSuperClass() {
+		return superClass;
+	}
+
+	public void setSuperClass(String superClass) {
+		this.superClass = superClass;
+	}
 }

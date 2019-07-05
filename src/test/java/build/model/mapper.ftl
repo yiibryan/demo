@@ -17,10 +17,17 @@
   	
   	<!--条件SQL-->
   	<sql id="whereSql">
-		<#list fields as attr> 
-		<if test="${attr.fieldName}!=null and ${attr.fieldName}!=''">
-			and ${attr.colName}=${r"#{"}${attr.fieldName}${r"}"}
-		</if>
+		<#list fields as attr>
+			<#if attr.fieldName !=  'String'>
+			<if test="${attr.fieldName}!=null">
+				and ${attr.colName}=${r"#{"}${attr.fieldName}${r"}"}
+			</if>
+			<#else >
+			<if test="${attr.fieldName}!=null and ${attr.fieldName}!=''">
+				and ${attr.colName}=${r"#{"}${attr.fieldName}${r"}"}
+			</if>
+			</#if>
+
 	 	</#list>
   	</sql>
   	
@@ -40,10 +47,16 @@
   		update
   			${tableName}
   		<set>
-  			<#list fields as attr> 
-  			<if test="${attr.fieldName}!=null and ${attr.fieldName}!=''">
-  				${attr.colName}=${r"#{"}${attr.fieldName}${r"},"}
-  			</if>
+  			<#list fields as attr>
+				<#if attr.fieldName !=  'String'>
+			<if test="${attr.fieldName}!=null">
+				${attr.colName}=${r"#{"}${attr.fieldName}${r"},"}
+			</if>
+				<#else >
+			<if test="${attr.fieldName}!=null and ${attr.fieldName}!=''">
+				${attr.colName}=${r"#{"}${attr.fieldName}${r"},"}
+			</if>
+				</#if>
   		 	</#list>
   		</set>
   		<where>

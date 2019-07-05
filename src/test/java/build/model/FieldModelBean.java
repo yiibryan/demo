@@ -9,15 +9,15 @@ public class FieldModelBean  extends Base {
 	private String colName;
 	private String remark;
 	private boolean isPrimaryKey;
-
-
-
+	
+	
+	
 //	public FieldModelBean(String fieldName, String fieldType) {
 //		super();
 //		this.fieldName = fieldName;
 //		this.fieldType = fieldType;
 //	}
-
+	
 	public FieldModelBean(String fieldName, String fieldType, String colName,String remark, boolean isPrimaryKey) {
 		super();
 		this.fieldName = fieldName;
@@ -27,8 +27,8 @@ public class FieldModelBean  extends Base {
 		this.isPrimaryKey = isPrimaryKey;
 	}
 
-
-
+	
+	
 	public boolean isPrimaryKey() {
 		return isPrimaryKey;
 	}
@@ -69,6 +69,6 @@ public class FieldModelBean  extends Base {
 	public void setFieldType(String fieldType) {
 		this.fieldType = fieldType;
 	}
-
-
+	
+	
 }

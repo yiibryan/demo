@@ -10,7 +10,7 @@ import java.util.regex.Pattern;
  * @version 1.0.0
  */
 public class Underline2Camel {
-
+    
     /**
      * 下划线转驼峰法
      * @param line 源字符串
@@ -57,7 +57,7 @@ public class Underline2Camel {
         return sb.toString();
     }
     public static void main(String[] args) {
-
+    	
         String line="I_HAVE_AN_IPANG3_PIG";
         line = "communityId";
         String camel=underline2Camel(line,true);

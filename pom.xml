@@ -224,4 +224,24 @@
         </resources>
     </build>
 
+    <repositories>
+        <repository>
+            <id>guojiu-nexux</id>
+            <name>guojiu-nexux</name>
+            <url>http://192.168.10.244:8081/nexus/content/groups/public/</url>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+        </repository>
+
+        <repository>
+            <id>spring-milestones</id>
+            <name>Spring Milestones</name>
+            <url>https://repo.spring.io/milestone</url>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+        </repository>
+    </repositories>
+
 </project>

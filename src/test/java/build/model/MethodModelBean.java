@@ -7,7 +7,7 @@ public class MethodModelBean {
 	private String name;
 	private String resultType;
 	private List<FieldModelBean> params;
-
+	
 	public String getName() {
 		return name;
 	}

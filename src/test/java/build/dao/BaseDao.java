@@ -115,7 +115,7 @@ public class BaseDao {
 		 //获取字段列表
 		 ResultSet colRet = dbMetData.getColumns(null, "%", tableName, "%");
 		 while (colRet.next()) {
-			 String columnName = colRet.getString("COLUMN_NAME");
+			 String columnName = colRet.getString("COLUMN_NAME").toLowerCase();
 			 if(tempMap.containsKey(columnName)){
 			 	continue;
 			 }else{

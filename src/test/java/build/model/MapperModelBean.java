@@ -11,9 +11,9 @@ public class MapperModelBean extends Base {
 	private String type;
 	private String tableName;
 	private List<FieldModelBean> fields;
-
-
-
+	
+	
+	
 	public String getTableName() {
 		return tableName;
 	}
@@ -44,6 +44,6 @@ public class MapperModelBean extends Base {
 	public void setFields(List<FieldModelBean> fields) {
 		this.fields = fields;
 	}
-
-
+	
+	
 }
