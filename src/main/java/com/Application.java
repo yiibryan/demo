@@ -16,7 +16,7 @@ import org.springframework.cache.annotation.EnableCaching;
 //@SpringBootApplication(exclude={DataSourceAutoConfiguration.class, HibernateJpaAutoConfiguration.class})
 @EnableCaching
 @ServletComponentScan//过滤器扫描
-@MapperScan({ "com.jur.**/*.mapper", "com.guojiu.**/*.mapper", "com.gjbigdata.**/*.mapper" })
+@MapperScan({ "com.jur.**/*.mapper", "com.guojiu.**/*.mapper", "com.demo.**/*.mapper", "com.gjbigdata.**/*.mapper" })
 public class Application extends SpringBootServletInitializer {
 
     public Application(){}

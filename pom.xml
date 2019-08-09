@@ -118,7 +118,7 @@
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
-            <version>6.0.6</version>
+            <version>8.0.11</version>
             <exclusions>
                 <exclusion>
                     <groupId>org.slf4j</groupId>
@@ -163,6 +163,12 @@
         </dependency>
 
         <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-redis</artifactId>
+            <version>1.5.6.RELEASE</version>
+        </dependency>
+
+        <dependency>
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-lang3</artifactId>
             <version>3.9</version>
@@ -177,6 +183,18 @@
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-context</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.lxxx.public</groupId>
+            <artifactId>common-poi</artifactId>
+            <version>0.0.2</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.lxxx.public</groupId>
+            <artifactId>common-fileupload</artifactId>
+            <version>0.0.2</version>
         </dependency>
     </dependencies>
 

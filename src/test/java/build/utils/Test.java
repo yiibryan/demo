@@ -13,16 +13,16 @@ public class Test {
 
 	private static void fac(String modelName,String tableName){
 		//String modelName="InOutRecord";
-		String basePackage="com.guojiu.financing.flow";
+		String basePackage="com.demo";
 		//String tableName="t_warehouse_in_out_record";
-		String outPath = "G:\\192.168.10.239\\国久大数据\\项目工程\\2019年度\\高投融资平台\\项目代码\\后端\\financing\\src\\main\\java\\";
+		String outPath = "F:\\javaDemo\\";
 
 		DataBase dataBase = new DataBase();
 		dataBase.setUserName("root");
-		dataBase.setPassWord("#20as3SElksds0ew98");
-		dataBase.setPath("jdbc:mysql://192.168.10.239:13307/financing?useUnicode=true&characterEncoding=UTF-8&allowMultiQueries=false");
-//		dataBase.setPassWord("");
-//		dataBase.setPath("jdbc:mysql://127.0.0.1:3306/wssp?useUnicode=true&characterEncoding=utf-8");
+//		dataBase.setPassWord("#20as3SElksds0ew98");
+//		dataBase.setPath("jdbc:mysql://192.168.10.239:13307/financing?useUnicode=true&characterEncoding=UTF-8&allowMultiQueries=false");
+		dataBase.setPassWord("root");
+		dataBase.setPath("jdbc:mysql://localhost:3306/house?useUnicode=true&characterEncoding=UTF-8&allowMultiQueries=false&useSSL=false&serverTimezone=GMT%2B8");
 		dataBase.setDriverName("com.mysql.cj.jdbc.Driver");;
 		BaseDao baseDao = new BaseDao(dataBase, "");
 		try {
@@ -46,7 +46,7 @@ public class Test {
 	public static   void main(String[] args) {
 		List<String> modelNames = new ArrayList<>();
 //		modelNames.add("FlowBase");
-		modelNames.add("FlowHistory");
+		modelNames.add("Room");
 //		modelNames.add("FlowNode");
 //		modelNames.add("FlowReviewer");
 //		modelNames.add("Payment");
@@ -55,7 +55,7 @@ public class Test {
 
 		List<String> tabales = new ArrayList<>();
 //		tabales.add("t_flow_base");
-		tabales.add("t_flow_history");
+		tabales.add("t_houses_room_info");
 //		tabales.add("t_flow_node");
 //		tabales.add("t_flow_reviewer");
 //		tabales.add("t_finance_payment");

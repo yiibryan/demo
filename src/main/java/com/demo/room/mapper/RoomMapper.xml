@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.demo.room.mapper.RoomMapper" >
+  <!--实体与数据库表字段映射-->
+  	<resultMap id="resultMap" type="com.demo.room.domain.Room">
+		<result property="id" column="id" />
+		<result property="unitId" column="unit_id" />
+		<result property="roomNo" column="room_no" />
+		<result property="apartmentId" column="apartment_id" />
+		<result property="price" column="price" />
+		<result property="lowPrice" column="low_price" />
+		<result property="layer" column="layer" />
+		<result property="publicArea" column="public_area" />
+		<result property="springLayer" column="spring_layer" />
+		<result property="orientation" column="orientation" />
+		<result property="status" column="status" />
+		<result property="createTime" column="create_time" />
+		<result property="totalPrice" column="total_price" />
+		<result property="saleTime" column="sale_time" />
+  	</resultMap>
+  	
+  	<!--查询SQL-->
+  	<sql id="querySql">
+  		 id,
+  		 unit_id,
+  		 room_no,
+  		 apartment_id,
+  		 price,
+  		 low_price,
+  		 layer,
+  		 public_area,
+  		 spring_layer,
+  		 orientation,
+  		 status,
+  		 create_time,
+  		 total_price,
+  		 sale_time
+  	</sql>
+  	
+  	<!--条件SQL-->
+  	<sql id="whereSql">
+			<if test="id!=null">
+				and id=#{id}
+			</if>
+
+			<if test="unitId!=null">
+				and unit_id=#{unitId}
+			</if>
+
+			<if test="roomNo!=null and roomNo!=''">
+				and room_no=#{roomNo}
+			</if>
+
+			<if test="apartmentId!=null">
+				and apartment_id=#{apartmentId}
+			</if>
+
+			<if test="price!=null">
+				and price=#{price}
+			</if>
+
+			<if test="lowPrice!=null">
+				and low_price=#{lowPrice}
+			</if>
+
+			<if test="layer!=null">
+				and layer=#{layer}
+			</if>
+
+			<if test="publicArea!=null and publicArea!=''">
+				and public_area=#{publicArea}
+			</if>
+
+			<if test="springLayer!=null">
+				and spring_layer=#{springLayer}
+			</if>
+
+			<if test="orientation!=null">
+				and orientation=#{orientation}
+			</if>
+
+			<if test="status!=null">
+				and status=#{status}
+			</if>
+
+			<if test="createTime!=null">
+				and create_time=#{createTime}
+			</if>
+
+			<if test="totalPrice!=null">
+				and total_price=#{totalPrice}
+			</if>
+
+			<if test="saleTime!=null">
+				and sale_time=#{saleTime}
+			</if>
+
+  	</sql>
+  	
+  	<!--自动生成查询语句-->
+  	<select id="find" parameterType="com.demo.room.domain.Room" resultMap="resultMap">
+  		select
+  			<include refid="querySql"/>
+  		from
+  			t_houses_room_info
+  		<where>
+  			<include refid="whereSql"/>
+  		</where>
+  	</select>
+  	
+  	<!--自动生成更新语句-->
+  	<update id="update" parameterType="com.demo.room.domain.Room">
+  		update
+  			t_houses_room_info
+  		<set>
+			<if test="id!=null">
+				id=#{id},
+			</if>
+			<if test="unitId!=null">
+				unit_id=#{unitId},
+			</if>
+			<if test="roomNo!=null and roomNo!=''">
+				room_no=#{roomNo},
+			</if>
+			<if test="apartmentId!=null">
+				apartment_id=#{apartmentId},
+			</if>
+			<if test="price!=null">
+				price=#{price},
+			</if>
+			<if test="lowPrice!=null">
+				low_price=#{lowPrice},
+			</if>
+			<if test="layer!=null">
+				layer=#{layer},
+			</if>
+			<if test="publicArea!=null and publicArea!=''">
+				public_area=#{publicArea},
+			</if>
+			<if test="springLayer!=null">
+				spring_layer=#{springLayer},
+			</if>
+			<if test="orientation!=null">
+				orientation=#{orientation},
+			</if>
+			<if test="status!=null">
+				status=#{status},
+			</if>
+			<if test="createTime!=null">
+				create_time=#{createTime},
+			</if>
+			<if test="totalPrice!=null">
+				total_price=#{totalPrice},
+			</if>
+			<if test="saleTime!=null">
+				sale_time=#{saleTime},
+			</if>
+  		</set>
+  		<where>
+  			
+  			<if test="id!=null and id!=''">
+  				and id = #{id}
+  			</if>
+  			<if test="ids!=null and ids.size>0">
+  				and id in
+  				 <foreach collection="ids" item="item" index="index" open="(" close=")" separator=",">  
+         			#{item}
+         		</foreach>  
+  			</if>
+  		</where>
+  	</update>
+  	
+  	<!--自动生成插入语句-->
+  	<insert id="save" parameterType="com.demo.room.domain.Room" useGeneratedKeys="true" keyProperty="id">
+  		insert into 
+  			t_houses_room_info(<include refid="querySql"/>)
+  		values(
+  		#{id},
+  		  		#{unitId},
+  		  		#{roomNo},
+  		  		#{apartmentId},
+  		  		#{price},
+  		  		#{lowPrice},
+  		  		#{layer},
+  		  		#{publicArea},
+  		  		#{springLayer},
+  		  		#{orientation},
+  		  		#{status},
+  		  		#{createTime},
+  		  		#{totalPrice},
+  		  		#{saleTime}
+  		)
+  	</insert> 
+  	<!--自动生成删除语句-->
+  	<delete id="delete"  parameterType="com.demo.room.domain.Room">
+  		delete from t_houses_room_info
+  		<where>
+  			<include refid="whereSql"/>
+  			<if test="id!=null and id!=''">
+  				and id = #{id}
+  			</if>
+  			<if test="ids!=null and ids.size>0">
+  				and id in
+  				 <foreach collection="ids" item="item" index="index" open="(" close=")" separator=",">  
+         			#{item}
+         		</foreach>  
+  			</if>
+  		</where>
+  	</delete>
+  	
+  	
+  	
+</mapper>
