@@ -1,0 +1,271 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.guojiu.tms.web.user.mapper.UserMapper">
+    <!--实体与数据库表字段映射-->
+    <resultMap id="resultMap" type="com.guojiu.tms.web.user.domain.User">
+        <result property="userId" column="user_id"/>
+        <result property="username" column="username"/>
+        <result property="fullName" column="full_name"/>
+        <result property="password" column="password"/>
+        <result property="sex" column="sex"/>
+        <result property="phone" column="phone"/>
+        <result property="addr" column="addr"/>
+        <result property="email" column="email"/>
+        <result property="state" column="state"/>
+        <result property="projectId" column="project_id"/>
+        <result property="projectName" column="project_name"/>
+        <result property="createDate" column="create_date"/>
+        <result property="createUser" column="create_user"/>
+        <result property="validDate" column="valid_date"/>
+        <result property="remark" column="remark"/>
+        <result property="lastLoginTime" column="last_login_time"/>
+    </resultMap>
+
+    <!--查询SQL-->
+    <sql id="querySql">
+  		 user_id,
+  		 username,
+  		 full_name,
+  		 password,
+  		 sex,
+  		 phone,
+  		 addr,
+  		 email,
+  		 state,
+  		 project_id,
+  		 project_name,
+  		 create_date,
+  		 create_user,
+  		 valid_date,
+  		 remark,
+  		 last_login_time
+  	</sql>
+
+    <!--条件SQL-->
+    <sql id="whereSql">
+        <if test="userId!=null and userId!=''">
+            and user_id=#{userId}
+        </if>
+
+        <if test="username!=null and username!=''">
+            and username=#{username}
+        </if>
+
+        <if test="fullName!=null and fullName!=''">
+            and full_name=#{fullName}
+        </if>
+
+        <if test="password!=null and password!=''">
+            and password=#{password}
+        </if>
+
+        <if test="sex!=null and sex!=''">
+            and sex=#{sex}
+        </if>
+
+        <if test="phone!=null and phone!=''">
+            and phone=#{phone}
+        </if>
+
+        <if test="addr!=null and addr!=''">
+            and addr=#{addr}
+        </if>
+
+        <if test="email!=null and email!=''">
+            and email=#{email}
+        </if>
+
+        <if test="state!=null and state!=''">
+            and state=#{state}
+        </if>
+
+        <if test="projectId!=null and projectId!=''">
+            and project_id=#{projectId}
+        </if>
+
+        <if test="projectName!=null and projectName!=''">
+            and project_name=#{projectName}
+        </if>
+
+        <if test="createDate!=null">
+            and create_date=#{createDate}
+        </if>
+
+        <if test="createUser!=null and createUser!=''">
+            and create_user=#{createUser}
+        </if>
+
+        <if test="validDate!=null">
+            and valid_date=#{validDate}
+        </if>
+
+        <if test="remark!=null and remark!=''">
+            and remark=#{remark}
+        </if>
+
+        <if test="lastLoginTime!=null">
+            and last_login_time=#{lastLoginTime}
+        </if>
+
+    </sql>
+
+    <!--自动生成查询语句-->
+    <select id="find" parameterType="com.guojiu.tms.web.user.domain.User" resultMap="resultMap">
+        select
+        <include refid="querySql"/>
+        from
+        t_jcqx_user
+        <where>
+            <include refid="whereSql"/>
+        </where>
+    </select>
+
+    <!--自动生成查询语句-->
+    <select id="findOne" parameterType="com.guojiu.tms.web.user.domain.User" resultMap="resultMap">
+        select
+        <include refid="querySql"/>
+        from
+        t_jcqx_user
+        <where>
+            <include refid="whereSql"/>
+        </where>
+    </select>
+
+    <!--自动生成更新语句-->
+    <update id="update" parameterType="com.guojiu.tms.web.user.domain.User">
+        update
+        t_jcqx_user
+        <set>
+            <if test="userId!=null and userId!=''">
+                user_id=#{userId},
+            </if>
+            <if test="username!=null and username!=''">
+                username=#{username},
+            </if>
+            <if test="fullName!=null and fullName!=''">
+                full_name=#{fullName},
+            </if>
+            <if test="password!=null and password!=''">
+                password=#{password},
+            </if>
+            <if test="sex!=null and sex!=''">
+                sex=#{sex},
+            </if>
+            <if test="phone!=null and phone!=''">
+                phone=#{phone},
+            </if>
+            <if test="addr!=null and addr!=''">
+                addr=#{addr},
+            </if>
+            <if test="email!=null and email!=''">
+                email=#{email},
+            </if>
+            <if test="state!=null and state!=''">
+                state=#{state},
+            </if>
+            <if test="projectId!=null and projectId!=''">
+                project_id=#{projectId},
+            </if>
+            <if test="projectName!=null and projectName!=''">
+                project_name=#{projectName},
+            </if>
+            <if test="createDate!=null">
+                create_date=#{createDate},
+            </if>
+            <if test="createUser!=null and createUser!=''">
+                create_user=#{createUser},
+            </if>
+            <if test="validDate!=null">
+                valid_date=#{validDate},
+            </if>
+            <if test="remark!=null and remark!=''">
+                remark=#{remark},
+            </if>
+            <if test="lastLoginTime!=null">
+                last_login_time=#{lastLoginTime},
+            </if>
+        </set>
+        <where>
+
+            <if test="uSERID!=null and uSERID!=''">
+                and USER_ID = #{uSERID}
+            </if>
+            <if test="ids!=null and ids.size>0">
+                and USER_ID in
+                <foreach collection="ids" item="item" index="index" open="(" close=")" separator=",">
+                    #{item}
+                </foreach>
+            </if>
+        </where>
+    </update>
+
+    <!--自动生成插入语句-->
+    <insert id="save" parameterType="com.guojiu.tms.web.user.domain.User" useGeneratedKeys="true" keyProperty="id">
+        insert into
+        t_jcqx_user(<include refid="querySql"/>)
+        values(
+        #{userId},
+        #{username},
+        #{fullName},
+        #{password},
+        #{sex},
+        #{phone},
+        #{addr},
+        #{email},
+        #{state},
+        #{projectId},
+        #{projectName},
+        #{createDate},
+        #{createUser},
+        #{validDate},
+        #{remark},
+        #{lastLoginTime}
+        )
+    </insert>
+
+    <!--自动生成批量插入语句-->
+    <insert id="saveList" parameterType="java.util.List">
+        REPLACE into
+        t_jcqx_user(<include refid="querySql"/>)
+        values
+        <foreach collection="list" item="item" index="index" open="" close="" separator=",">
+            (
+            #{item.userId},
+            #{item.username},
+            #{item.fullName},
+            #{item.password},
+            #{item.sex},
+            #{item.phone},
+            #{item.addr},
+            #{item.email},
+            #{item.state},
+            #{item.projectId},
+            #{item.projectName},
+            #{item.createDate},
+            #{item.createUser},
+            #{item.validDate},
+            #{item.remark},
+            #{item.lastLoginTime}
+            )
+        </foreach>
+    </insert>
+
+    <!--自动生成删除语句-->
+    <delete id="delete" parameterType="com.guojiu.tms.web.user.domain.User">
+        delete from t_jcqx_user
+        <where>
+            <include refid="whereSql"/>
+            <if test="uSERID!=null and uSERID!=''">
+                and USER_ID = #{uSERID}
+            </if>
+            <if test="ids!=null and ids.size>0">
+                and USER_ID in
+                <foreach collection="ids" item="item" index="index" open="(" close=")" separator=",">
+                    #{item}
+                </foreach>
+            </if>
+        </where>
+    </delete>
+
+
+</mapper>

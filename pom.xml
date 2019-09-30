@@ -4,9 +4,10 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.guojiu.demo</groupId>
+    <groupId>com.guojiu</groupId>
     <artifactId>demo</artifactId>
     <version>1.0-SNAPSHOT</version>
+    <packaging>jar</packaging>
 
     <name>demo</name>
     <!-- FIXME change it to the project's website -->
@@ -21,8 +22,8 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <maven.compiler.source>1.7</maven.compiler.source>
-        <maven.compiler.target>1.7</maven.compiler.target>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <spring.boot.version>1.2.6</spring.boot.version>
         <mybatis.version>3.4.1</mybatis.version>
@@ -75,11 +76,11 @@
             <version>8.0.36</version>
             <scope>provided</scope>
         </dependency>
-        <dependency>
+        <!--<dependency>
             <groupId>org.apache.tomcat.embed</groupId>
             <artifactId>tomcat-embed-jasper</artifactId>
             <scope>provided</scope>
-        </dependency>
+        </dependency>-->
         <dependency>
             <groupId>javax.servlet</groupId>
             <artifactId>jstl</artifactId>
@@ -110,7 +111,7 @@
         <dependency>
             <groupId>com.alibaba</groupId>
             <artifactId>druid</artifactId>
-            <version>1.0.18</version>
+            <version>1.1.10</version>
         </dependency>
         <!--alibaba 连接池 end-->
 
@@ -186,16 +187,48 @@
         </dependency>
 
         <dependency>
+            <groupId>com.sun.mail</groupId>
+            <artifactId>javax.mail</artifactId>
+            <version>1.5.2</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.thoughtworks.xstream</groupId>
+            <artifactId>xstream</artifactId>
+            <version>1.4.10</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.guojiu.public</groupId>
+            <artifactId>base</artifactId>
+            <version>0.0.1</version>
+        </dependency>
+        <dependency>
+            <groupId>com.guojiu.public</groupId>
+            <artifactId>rediscache</artifactId>
+            <version>0.0.4</version>
+        </dependency>
+        <dependency>
+            <groupId>com.guojiu.security</groupId>
+            <artifactId>jur-security-app</artifactId>
+            <version>${jur.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.guojiu.security</groupId>
+            <artifactId>jur-security-authorize</artifactId>
+            <version>${jur.version}</version>
+        </dependency>
+        <dependency>
             <groupId>com.lxxx.public</groupId>
             <artifactId>common-poi</artifactId>
             <version>0.0.2</version>
         </dependency>
-
         <dependency>
             <groupId>com.lxxx.public</groupId>
             <artifactId>common-fileupload</artifactId>
             <version>0.0.2</version>
         </dependency>
+
     </dependencies>
 
 
@@ -243,6 +276,19 @@
     </build>
 
     <repositories>
+        <repository>
+            <id>nexus-lxxx</id>
+            <name>lxxx</name>
+            <url>http://39.108.239.33:8081/nexus/content/groups/public</url>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+            <snapshots>
+                <enabled>true</enabled>
+                <updatePolicy>always</updatePolicy>
+            </snapshots>
+        </repository>
+
         <repository>
             <id>guojiu-nexux</id>
             <name>guojiu-nexux</name>

@@ -12,17 +12,15 @@ import java.util.List;
 public class Test {
 
 	private static void fac(String modelName,String tableName){
-		//String modelName="InOutRecord";
-		String basePackage="com.demo";
-		//String tableName="t_warehouse_in_out_record";
-		String outPath = "F:\\javaDemo\\";
+		String basePackage="com.guojiu.tms.web";
+		String outPath = "F:\\freemaker\\tms\\";
 
 		DataBase dataBase = new DataBase();
 		dataBase.setUserName("root");
 //		dataBase.setPassWord("#20as3SElksds0ew98");
-//		dataBase.setPath("jdbc:mysql://192.168.10.239:13307/financing?useUnicode=true&characterEncoding=UTF-8&allowMultiQueries=false");
+//		dataBase.setPath("jdbc:mysql://192.168.10.239:13307/tms?useUnicode=true&characterEncoding=UTF-8&allowMultiQueries=false");
 		dataBase.setPassWord("root");
-		dataBase.setPath("jdbc:mysql://localhost:3306/house?useUnicode=true&characterEncoding=UTF-8&allowMultiQueries=false&useSSL=false&serverTimezone=GMT%2B8");
+		dataBase.setPath("jdbc:mysql://127.0.0.1:3306/tms?useUnicode=true&characterEncoding=UTF-8&allowMultiQueries=true&useAffectedRows=true&serverTimezone=Asia/Shanghai&autoReconnect=true&useSSL=false");
 		dataBase.setDriverName("com.mysql.cj.jdbc.Driver");;
 		BaseDao baseDao = new BaseDao(dataBase, "");
 		try {
@@ -45,22 +43,10 @@ public class Test {
 
 	public static   void main(String[] args) {
 		List<String> modelNames = new ArrayList<>();
-//		modelNames.add("FlowBase");
-		modelNames.add("Room");
-//		modelNames.add("FlowNode");
-//		modelNames.add("FlowReviewer");
-//		modelNames.add("Payment");
-//		modelNames.add("SysUser");
-//		modelNames.add("Total");
+		modelNames.add("User");
 
 		List<String> tabales = new ArrayList<>();
-//		tabales.add("t_flow_base");
-		tabales.add("t_houses_room_info");
-//		tabales.add("t_flow_node");
-//		tabales.add("t_flow_reviewer");
-//		tabales.add("t_finance_payment");
-//		tabales.add("t_sys_user");
-//		tabales.add("t_statistical_total");
+		tabales.add("t_jcqx_user");
 
 
 		for(int i=0;i<modelNames.size();i++){

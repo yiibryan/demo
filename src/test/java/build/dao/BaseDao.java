@@ -2,7 +2,7 @@ package build.dao;
 
 import build.model.FieldModelBean;
 import build.utils.Underline2Camel;
-import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang.StringUtils;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -17,10 +17,10 @@ public class BaseDao {
 	private String driverName;
 	private String user;
 	private String passWord;*/
-
-	public Connection conn = null;
-    public PreparedStatement pst = null;
-
+	
+	public Connection conn = null;  
+    public PreparedStatement pst = null;  
+    
     public static void main(String[] args) {
     	DataBase dataBase = new DataBase();
     	dataBase.setPassWord("123456");
@@ -36,37 +36,37 @@ public class BaseDao {
 		}
 		baseDao.close();
 	}
-
+    
 	public BaseDao(DataBase dataBase, String sql){
 		String url = dataBase.getPath();
 		String driverName = dataBase.getDriverName();
 		String user = dataBase.getUserName();
 		String passWord = dataBase.getPassWord();
-
+		
 		try {
-			 Class.forName(driverName);//指定连接类型
-	         conn = DriverManager.getConnection(url, user, passWord);//获取连接
-	       //  pst = conn.prepareStatement(sql);//准备执行语句
+			 Class.forName(driverName);//指定连接类型  
+	         conn = DriverManager.getConnection(url, user, passWord);//获取连接  
+	       //  pst = conn.prepareStatement(sql);//准备执行语句  
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-
+		
 	}
-
-	public void close() {
-		try {
+	
+	public void close() {  
+		try {  
 			if(conn!=null){
-				this.conn.close();
+				this.conn.close();  
 			}
 			if(pst!=null){
-				this.pst.close();
+				this.pst.close();  
 			}
-
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
+			
+		} catch (SQLException e) {  
+			e.printStackTrace();  
+		}  
  	}
-
+	
 
 	/**
 	 * 获取表明
@@ -74,25 +74,25 @@ public class BaseDao {
 	 */
 	 public List<String> getTables() throws SQLException {
 		 List<String> list = new ArrayList<String>();
-		 DatabaseMetaData dbMetData = conn.getMetaData();
-	        // mysql convertDatabaseCharsetType null
-		 ResultSet rs = dbMetData.getTables(null,
-	                convertDatabaseCharsetType("root", "mysql"), null,
-	                new String[] { "TABLE", "VIEW" });
-
-		 while (rs.next()) {
-			 if (rs.getString(4) != null&& (rs.getString(4).equalsIgnoreCase("TABLE") || rs.getString(4).equalsIgnoreCase("VIEW"))) {
-				 String tableName = rs.getString(3).toLowerCase();
-				 System.out.println("表："+tableName);
-				 // 根据表名提前表里面信息：
+		 DatabaseMetaData dbMetData = conn.getMetaData();  
+	        // mysql convertDatabaseCharsetType null  
+		 ResultSet rs = dbMetData.getTables(null,  
+	                convertDatabaseCharsetType("root", "mysql"), null,  
+	                new String[] { "TABLE", "VIEW" });  
+	  
+		 while (rs.next()) {  
+			 if (rs.getString(4) != null&& (rs.getString(4).equalsIgnoreCase("TABLE") || rs.getString(4).equalsIgnoreCase("VIEW"))) {  
+				 String tableName = rs.getString(3).toLowerCase();  
+				 System.out.println("表："+tableName);  
+				 // 根据表名提前表里面信息：  
 				getColumns(tableName);
-
+		  
 				 list.add(tableName);
-			 }
-		 }
+			 }  
+		 }    
 		 return list;
-	 }
-
+	 }  
+	 
 	 /**
 	  * 获取字段名
 	  * @param tableName
@@ -104,17 +104,17 @@ public class BaseDao {
 	 	Map<String,String>  tempMap = new HashMap<>();
 
 		 List<FieldModelBean> fields = new ArrayList<FieldModelBean>();
-		 DatabaseMetaData dbMetData = conn.getMetaData();
+		 DatabaseMetaData dbMetData = conn.getMetaData();  
 		 //获取主键列表
 		 Map<String, String> primary = new HashMap<String, String>();
 		 ResultSet rs = dbMetData.getPrimaryKeys(conn.getCatalog().toUpperCase(), null, tableName);
-		 while (rs.next()) {
+		 while (rs.next()) {  
 			 primary.put(rs.getString("COLUMN_NAME"), "");
-	         System.out.println("primary:"+rs.getString("COLUMN_NAME"));
-		 }
+	         System.out.println("primary:"+rs.getString("COLUMN_NAME"));  
+		 }  
 		 //获取字段列表
-		 ResultSet colRet = dbMetData.getColumns(null, "%", tableName, "%");
-		 while (colRet.next()) {
+		 ResultSet colRet = dbMetData.getColumns(null, "%", tableName, "%");  
+		 while (colRet.next()) {  
 			 String columnName = colRet.getString("COLUMN_NAME").toLowerCase();
 			 if(tempMap.containsKey(columnName)){
 			 	continue;
@@ -134,12 +134,12 @@ public class BaseDao {
 			 }else{
 				 fieldType="String";
 			 }
-
-			 int datasize = colRet.getInt("COLUMN_SIZE");
-			 int digits = colRet.getInt("DECIMAL_DIGITS");
-			 int nullable = colRet.getInt("NULLABLE");
-			 String remark = colRet.getString("REMARKS");
-
+			 
+			 int datasize = colRet.getInt("COLUMN_SIZE");  
+			 int digits = colRet.getInt("DECIMAL_DIGITS");  
+			 int nullable = colRet.getInt("NULLABLE");  
+			 String remark = colRet.getString("REMARKS");  
+			 
 			 System.out.println(columnName+":"+columnType+"::"+remark);
 			 String p = primary.get(columnName);
 			 FieldModelBean temp ;
@@ -158,11 +158,11 @@ public class BaseDao {
 				 fields.add(tempStr);
 			 }*/
 			 fields.add(temp);
-		 }
-
+		 }  
+		 
 		 return fields;
 	 }
-
+	 
 	 /**
 	  * 获取主键
 	  * @param tableName
@@ -171,36 +171,36 @@ public class BaseDao {
 	  */
 	 public FieldModelBean getPrimaryKeys(String tableName) throws SQLException{
 		 FieldModelBean bean = null;
-		 DatabaseMetaData dbMetData = conn.getMetaData();
+		 DatabaseMetaData dbMetData = conn.getMetaData();  
 		 ResultSet rs = dbMetData.getPrimaryKeys(conn.getCatalog().toUpperCase(), null, tableName);
-		 while (rs.next()) {
+		 while (rs.next()) {  
 			 String columnName = rs.getString("COLUMN_NAME");
-			 //String columnType = rs.getString("TYPE_NAME");
-			// String remark = rs.getString("REMARKS");
+			 //String columnType = rs.getString("TYPE_NAME"); 
+			// String remark = rs.getString("REMARKS");  
 			 bean = new FieldModelBean(Underline2Camel.underline2Camel(columnName, true), "String",columnName,"",true);
-		 }
+		 }  
 		 return bean;
 	 }
-
-	 public static String convertDatabaseCharsetType(String in, String type) {
-		 String dbUser;
-		 if (in != null) {
-			 if (type.equals("oracle")) {
-				 dbUser = in.toUpperCase();
-			 } else if (type.equals("postgresql")) {
-				 dbUser = "public";
-			 } else if (type.equals("mysql")) {
-				 dbUser = null;
-			 } else if (type.equals("mssqlserver")) {
-				 dbUser = null;
-			 } else if (type.equals("db2")) {
-				 dbUser = in.toUpperCase();
-			 } else {
-				 dbUser = in;
-			 }
-		 } else {
-			 dbUser = "public";
-		 }
-		 return dbUser;
-	 }
+	    
+	 public static String convertDatabaseCharsetType(String in, String type) {  
+		 String dbUser;  
+		 if (in != null) {  
+			 if (type.equals("oracle")) {  
+				 dbUser = in.toUpperCase();  
+			 } else if (type.equals("postgresql")) {  
+				 dbUser = "public";  
+			 } else if (type.equals("mysql")) {  
+				 dbUser = null;  
+			 } else if (type.equals("mssqlserver")) {  
+				 dbUser = null;  
+			 } else if (type.equals("db2")) {  
+				 dbUser = in.toUpperCase();  
+			 } else {  
+				 dbUser = in;  
+			 }  
+		 } else {  
+			 dbUser = "public";  
+		 }  
+		 return dbUser;  
+	 }  
 }
