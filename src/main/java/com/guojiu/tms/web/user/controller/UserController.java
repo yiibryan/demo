@@ -1,30 +1,20 @@
 package com.guojiu.tms.web.user.controller;
 
-import java.util.List;
-
-import javax.annotation.Resource;
-
-import java.util.Arrays;
-
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.*;
-
-import com.guojiu.common.util.Page;
-import com.guojiu.common.util.StringUtils;
-import com.lxxx.common.rest.BaseResponse;
-import com.lxxx.common.rest.DataResponse;
-import com.lxxx.common.rest.PageResponse;
 import com.guojiu.common.base.controller.BaseController;
+import com.guojiu.common.util.Page;
+import com.guojiu.tms.web.user.domain.User;
+import com.guojiu.tms.web.user.domain.UserNew;
+import com.guojiu.tms.web.user.service.UserService;
+import com.lxxx.common.rest.BaseResponse;
+import com.lxxx.common.rest.PageResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.*;
 
-import com.guojiu.tms.web.user.domain.UserNew;
-import com.guojiu.tms.web.user.domain.User;
-import com.guojiu.tms.web.user.service.UserService;
+import javax.annotation.Resource;
+import java.util.Arrays;
+import java.util.List;
 
 @Controller
 @RequestMapping("user")
@@ -37,21 +27,25 @@ public class UserController extends BaseController{
 
 	@RequestMapping(value = "list", method = RequestMethod.GET)
 	@ResponseBody
-	public PageResponse<List<UserNew>> list(UserNew userNew){
+	public BaseResponse list(User user){
 		Page.startPage();
 
-		PageResponse<List<UserNew>> data = userService.find(userNew);
-
-		return data;
+        return userService.find(user);
 	}
+
+    @RequestMapping(value = "listShort", method = RequestMethod.GET)
+    @ResponseBody
+    public PageResponse<List<UserNew>> listShort(User user){
+        Page.startPage();
+
+        return userService.findShort(user);
+    }
 
 	@RequestMapping(value = "{businessId}", method = RequestMethod.GET)
 	@ResponseBody
 	public BaseResponse detail(@PathVariable("businessId")String businessId){
 
-		BaseResponse detail = userService.findOne(businessId);
-
-		return detail;
+        return userService.findOne(businessId);
 	}
 
 
@@ -59,9 +53,7 @@ public class UserController extends BaseController{
 	@ResponseBody
 	public BaseResponse save(@RequestBody User user){
 
-		BaseResponse response = userService.save(user);
-
-		return response;
+        return userService.save(user);
 	}
 
 	@RequestMapping(value = "{businessId}", method = RequestMethod.PUT)
@@ -70,9 +62,7 @@ public class UserController extends BaseController{
 
 		user.setUserId(businessId);
 
-		BaseResponse response = userService.update(user);
-
-		return response;
+        return userService.update(user);
 	}
 
 
@@ -83,9 +73,7 @@ public class UserController extends BaseController{
 		User user = new User();
 		user.setUserId(businessId);
 
-		BaseResponse response = userService.delete(user);
-
-		return response;
+        return userService.delete(user);
 	}
 
 

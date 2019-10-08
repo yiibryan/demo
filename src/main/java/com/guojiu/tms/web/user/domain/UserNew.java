@@ -1,18 +1,21 @@
 package com.guojiu.tms.web.user.domain;
 
-import com.lxxx.common.dto.BaseBean;
-
-import java.util.Date;
-import java.util.List;
+import java.io.Serializable;
 
 /**
  *  自动生成model
  */
-public class UserNew extends BaseBean{
+public class UserNew implements Serializable {
     //
     private String userId;
     //账号
     private String username;
+
+    public UserNew(User user) {
+        this.userId = user.getUserId();
+        this.username = user.getUsername();
+        this.fullName = user.getFullName();
+    }
 
     public String getUserId() {
         return userId;

@@ -2,9 +2,11 @@ package com.guojiu.tms.web.user.service.impl;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import javax.annotation.Resource;
 
+import com.guojiu.tms.web.user.domain.UserNew;
 import org.springframework.stereotype.Service;
 
 import com.guojiu.common.util.StringUtils;
@@ -30,7 +32,15 @@ public class UserServiceImpl implements UserService {
 	@Resource
 	private UserMapper userMapper;
 
-	@Override
+    @Override
+    public PageResponse<List<UserNew>> findShort(User user) {
+        // TODO Auto-generated method stub
+        List<User> list = userMapper.find(user);
+        List<UserNew> collect = list.stream().map(UserNew::new).collect(Collectors.toList());
+        return new PageResponse<>(true,ResultEnum.SELECT_SUCCESS,collect);
+    }
+
+    @Override
 	public PageResponse<List<User>> find(User user) {
 		// TODO Auto-generated method stub
 		List<User> list = userMapper.find(user);
@@ -41,7 +51,7 @@ public class UserServiceImpl implements UserService {
 		return resultBean;
 	}
 
-    public PageResponse<List<User>> findShort(User user) {
+    /*public PageResponse<List<User>> findShort(User user) {
         // TODO Auto-generated method stub
         List<User> list = userMapper.find(user);
 
@@ -49,7 +59,7 @@ public class UserServiceImpl implements UserService {
         PageResponse<List<User>> resultBean = new PageResponse<List<User>>(true,ResultEnum.SELECT_SUCCESS,list);
 
         return resultBean;
-    }
+    }*/
 
 	public DataResponse<User> findOne(String id){
 		User user = new User();
