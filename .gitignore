@@ -13,3 +13,6 @@ thumbs.db
 
 package-lock.json
 yarn.lock
+web-log/*
+target
+*.iml
